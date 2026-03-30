@@ -12,11 +12,7 @@
 
 set -euo pipefail
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-CONFIG="${SCRIPT_DIR}/../config.sh"
-[[ -f "$CONFIG" ]] || { echo "Missing $CONFIG" >&2; exit 1; }
-# shellcheck source=/dev/null
-source "$CONFIG"
+source ../config.sh
 : "${DATA_COLLECTION:?}"
 
 # Run root (from config) and paths under it

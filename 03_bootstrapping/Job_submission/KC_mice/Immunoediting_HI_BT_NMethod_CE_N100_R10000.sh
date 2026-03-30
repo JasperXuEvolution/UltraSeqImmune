@@ -12,15 +12,10 @@
 #SBATCH --account=YOUR_SLURM_ACCOUNT
 #SBATCH --partition=batch
 
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-CONFIG="${SCRIPT_DIR}/../../../config.sh"
-[[ -f "$CONFIG" ]] || { echo "Missing $CONFIG" >&2; exit 1; }
-# shellcheck source=/dev/null
-source "$CONFIG"
+source ../../../config.sh
 
 source "$HOME/miniconda3/etc/profile.d/conda.sh"
 conda activate UltraSeqImmune
-
 
 
 # command
