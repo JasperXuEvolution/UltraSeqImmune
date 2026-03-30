@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+build/
+.venv/
+venv/
+.env
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+# Large data (>1 MB .csv / .parquet as of scan)
+02_data_cleaning_and_QC/data/Immunoediting_HI_final_df.csv
+02_data_cleaning_and_QC/data/Immunoediting_MI_final_df.csv
+02_data_cleaning_and_QC/data/Immunoediting_NI_final_df.csv
+02_data_cleaning_and_QC/data/Immunoediting_raw_final_df.parquet
+02_data_cleaning_and_QC/data/gRNA_clonalbarcode_combined.csv

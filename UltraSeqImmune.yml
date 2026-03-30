@@ -1,0 +1,27 @@
+# Conda environment for this repository (Ultra-Seq / immunoediting analysis).
+#
+# Python usage scanned from *.py and notebook code cells:
+#   pandas, numpy, scipy, matplotlib (+gridspec), seaborn, scikit-learn, statsmodels,
+#   pyarrow (parquet via pandas), regex (UltraSeq_Step2.py)
+#
+# Create:  conda env create -f UltraSeqImmune.yml
+# Update: conda env update -f UltraSeqImmune.yml --prune
+#
+name: UltraSeqImmune
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.12
+  - pip
+  - pandas
+  - numpy
+  - scipy
+  - matplotlib
+  - seaborn
+  - scikit-learn
+  - statsmodels
+  - pyarrow
+  - regex
+  - jupyter
+  - ipykernel
