@@ -500,8 +500,8 @@ def Cal_Bootstrapping_Summary(x,trait_of_interest):
         temp0 = temp_trait + '_95P'
         temp1 = temp_trait + '_5P'
         temp2 = temp_trait +'_fraction_greater_than_one' # t_test pvalue column name
-        temp3 = temp_trait +'_bootstrap_median'
-        temp4 = temp_trait +'_bootstrap_mean'
+        temp3 = temp_trait +'_bootstrap_mean'
+        temp4 = temp_trait +'_bootstrap_median'
         temp5 = temp_trait + '_97.5P'
         temp6 = temp_trait + '_2.5P'
         d[temp0] = x[temp_trait].quantile(0.95)
