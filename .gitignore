@@ -15,4 +15,7 @@ venv/
 02_data_cleaning_and_QC/data/Immunoediting_MI_final_df.csv
 02_data_cleaning_and_QC/data/Immunoediting_NI_final_df.csv
 02_data_cleaning_and_QC/data/Immunoediting_raw_final_df.parquet
+02_data_cleaning_and_QC/data/Immunoediting_NI_raw_final_df.parquet
+02_data_cleaning_and_QC/data/Immunoediting_MI_raw_final_df.parquet
+02_data_cleaning_and_QC/data/Immunoediting_HI_raw_final_df.parquet
 02_data_cleaning_and_QC/data/gRNA_clonalbarcode_combined.csv

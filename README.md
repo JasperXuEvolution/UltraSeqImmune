@@ -18,8 +18,9 @@ The code implements an **Ultra-Seq** workflow: paired-end reads are reduced to a
 ## 2. QC and preprocessing
 
 * See **[`02_data_cleaning_and_QC/`](02_data_cleaning_and_QC/)** — [`README`](02_data_cleaning_and_QC/README.md).
-* Jupyter notebooks load the combined table and metadata, filter and aggregate tumors, and produce **QC plots** and tables under **`data/`**.
-* Shared helpers: [`UltraSeq_QC_functions.py`](02_data_cleaning_and_QC/UltraSeq_QC_functions.py).
+* **Step 1 —** [`01-data-preprocessing.ipynb`](02_data_cleaning_and_QC/01-data-preprocessing.ipynb): load the combined barcode table and metadata, filter and aggregate, and write per-vector tables and summaries under **`02_data_cleaning_and_QC/data/`**.
+* **Step 2 —** [`02-QC-plotting.ipynb`](02_data_cleaning_and_QC/02-QC-plotting.ipynb): QC figures and exploratory analysis (uses [`UltraSeq_QC_functions.py`](02_data_cleaning_and_QC/UltraSeq_QC_functions.py)).
+* **Step 3 —** [`03-input_data_for_BT.ipynb`](02_data_cleaning_and_QC/03-input_data_for_BT.ipynb): build **parquet** inputs for bootstrapping (`Immunoediting_*_raw_final_df.parquet` in **`data/`**), passed to [`03_bootstrapping/`](03_bootstrapping/).
 
 ---
 
