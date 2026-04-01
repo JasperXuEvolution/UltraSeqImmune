@@ -230,12 +230,10 @@ def Nested_Boostrap_Index_Special_single(input_dic,input_df,input_total_gRNA_num
     return(temp_coho)  
 
 def Generate_Index_Dictionary(input_df):
-    # This function generate a dictionary for speed up the boostrap process
     temp_dic = {}
-    temp_group = input_df.groupby(['Sample_ID'])
-    for key in temp_group.groups.keys():
-        temp_dic[key] = temp_group.get_group(key).index.values
-    return(temp_dic)   
+    for key, sub_df in input_df.groupby('Sample_ID'):
+        temp_dic[key] = sub_df.index.values
+    return temp_dic
 
 def Generate_ref_input_df(input_df,input_sample_list,input_cell_cutoff):
     return(input_df[(input_df['Cell_number']>input_cell_cutoff)&(input_df['Sample_ID'].isin(input_sample_list))])
@@ -500,8 +498,8 @@ def Cal_Bootstrapping_Summary(x,trait_of_interest):
         temp0 = temp_trait + '_95P'
         temp1 = temp_trait + '_5P'
         temp2 = temp_trait +'_fraction_greater_than_one' # t_test pvalue column name
-        temp3 = temp_trait +'_bootstrap_mean'
-        temp4 = temp_trait +'_bootstrap_median'
+        temp3 = temp_trait +'_bootstrap_median'
+        temp4 = temp_trait +'_bootstrap_mean'
         temp5 = temp_trait + '_97.5P'
         temp6 = temp_trait + '_2.5P'
         d[temp0] = x[temp_trait].quantile(0.95)
@@ -589,15 +587,26 @@ def Geometric_Mean(input_vector):
 
 
 def fdr(p_vals):
-    p = np.asfarray(p_vals) # make input as float array
-    by_descend = p.argsort()[::-1]
-    by_orig = by_descend.argsort()
-    p = p[by_descend] # sort pvalue from small to large
-    ranked_p_values = rankdata(p,method ='max') # this max is very important, when identical, use largest
-    fdr = p * len(p) / ranked_p_values
-    fdr = np.minimum(1, np.minimum.accumulate(fdr))
+    p = np.asarray(p_vals, dtype=float)
 
-    return fdr[by_orig]
+    n = len(p)
+    order = np.argsort(p)              # ascending order
+    ranked_p = p[order]
+
+    # BH correction
+    fdr_vals = ranked_p * n / (np.arange(1, n + 1))
+
+    # enforce monotonicity 
+    fdr_vals = np.minimum.accumulate(fdr_vals[::-1])[::-1]
+
+    # cap at 1
+    fdr_vals = np.minimum(fdr_vals, 1)
+
+    # return to original order
+    fdr_corrected = np.empty_like(fdr_vals)
+    fdr_corrected[order] = fdr_vals
+
+    return fdr_corrected
 
 
 
