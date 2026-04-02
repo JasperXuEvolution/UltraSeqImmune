@@ -18,7 +18,7 @@ dependencies:
   - numpy
   - scipy
   - matplotlib
-  - seaborn
+  - seaborn=0.12.2
   - scikit-learn
   - statsmodels
   - pyarrow
